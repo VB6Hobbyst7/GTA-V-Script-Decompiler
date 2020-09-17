@@ -20,6 +20,21 @@ namespace Decompiler
 		{
 			ThreadLock = new object();
 			Config = new Ini.IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
+			if (!File.Exists(Config.path))
+			{
+				Config.IniWriteValue("Base", "IntStyle", "int");
+				Config.IniWriteBool("Base", "Show_Array_Size", true);
+				Config.IniWriteBool("Base", "Reverse_Hashes", true);
+				Config.IniWriteBool("Base", "Declare_Variables", true);
+				Config.IniWriteBool("Base", "Shift_Variables", true);
+				Config.IniWriteBool("View", "Show_Nat_Namespace", true);
+				Config.IniWriteBool("Base", "Show_Func_Pointer", false);
+				Config.IniWriteBool("Base", "Use_MultiThreading", false);
+				Config.IniWriteBool("Base", "Include_Function_Position", false);
+				Config.IniWriteBool("Base", "Uppercase_Natives", false);
+				Config.IniWriteBool("Base", "Hex_Index", false);
+				Config.IniWriteBool("View", "Line_Numbers", true);
+			}
 			Find_Nat_Namespace();
 			Find_Upper_Natives();
 			//Build NativeFiles from Directory if file exists, if not use the files in the resources
@@ -37,6 +52,10 @@ namespace Decompiler
 				x64nativefile = new x64NativeFile(File.OpenRead(path));
 			else
 				x64nativefile = new x64NativeFile(new MemoryStream(Properties.Resources.x64natives));
+
+			ScriptFile.npi = new NativeParamInfo();
+			//ScriptFile.hashbank = temp;
+			// ScriptFile.hashbank = new Hashes();
 
 			if (args.Length == 0)
 			{

@@ -39,26 +39,9 @@ namespace Decompiler
 		public MainForm()
 		{
 			InitializeComponent();
-			ScriptFile.npi = new NativeParamInfo();
 
-			//ScriptFile.hashbank = temp;
-			// ScriptFile.hashbank = new Hashes();
 			panel1.Size = new Size(0, panel1.Height);
-			if (!File.Exists(Program.Config.path))
-			{
-				Program.Config.IniWriteValue("Base", "IntStyle", "int");
-				Program.Config.IniWriteBool("Base", "Show_Array_Size", true);
-				Program.Config.IniWriteBool("Base", "Reverse_Hashes", true);
-				Program.Config.IniWriteBool("Base", "Declare_Variables", true);
-				Program.Config.IniWriteBool("Base", "Shift_Variables", true);
-				Program.Config.IniWriteBool("View", "Show_Nat_Namespace", true);
-				Program.Config.IniWriteBool("Base", "Show_Func_Pointer", false);
-				Program.Config.IniWriteBool("Base", "Use_MultiThreading", false);
-				Program.Config.IniWriteBool("Base", "Include_Function_Position", false);
-				Program.Config.IniWriteBool("Base", "Uppercase_Natives", false);
-				Program.Config.IniWriteBool("Base", "Hex_Index", false);
-				Program.Config.IniWriteBool("View", "Line_Numbers", true);
-			}
+			
 			showArraySizeToolStripMenuItem.Checked = Program.Find_Show_Array_Size();
 			reverseHashesToolStripMenuItem.Checked = Program.Find_Reverse_Hashes();
 			declareVariablesToolStripMenuItem.Checked = Program.Find_Declare_Variables();
