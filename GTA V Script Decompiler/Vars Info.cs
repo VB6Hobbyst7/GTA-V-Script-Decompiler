@@ -70,10 +70,10 @@ namespace Decompiler
             {
                 name = Types.gettype(var.DataType).varletter;
             }
-            else if (var.Immediatesize == 3)
+            /*else if (var.Immediatesize == 3)
             {
                 name = "v";
-            }
+            }*/
 
             switch (Listtype)
             {
@@ -82,12 +82,18 @@ namespace Decompiler
                 case ListType.Params: name += "Param"; break;
             }
 
-            if (Program.Shift_Variables) return name + VarRemapper[(int)index].ToString();
-            else
+            try
+            {
+                if (Program.Shift_Variables) return name + VarRemapper[(int)index].ToString();
+                else
+                {
+                    return name + (Listtype == ListType.Statics && index >= scriptParamStart ? index - scriptParamStart : index).ToString();
+                }
+            }
+            catch(KeyNotFoundException)
             {
                 return name + (Listtype == ListType.Statics && index >= scriptParamStart ? index - scriptParamStart : index).ToString();
             }
-
         }
 		public void SetScriptParamCount(int count)
 		{
@@ -135,10 +141,10 @@ namespace Decompiler
 					datatype = Types.gettype(var.DataType).vardec;
 					
 				}
-				else if (var.Immediatesize == 3)
+				/*else if (var.Immediatesize == 3)
 				{
 					datatype = "vector3 v";
-				}
+				}*/
 				else if (var.DataType == Stack.DataType.String)
 				{
 					datatype = "char c";
@@ -169,13 +175,12 @@ namespace Decompiler
 							value = " = \"" + Encoding.ASCII.GetString(data.ToArray()) + "\"";
 
 						}
-						else if (var.Immediatesize == 3)
+						/*else if (var.Immediatesize == 3)
 						{
-
 							value += " = { " + Utils.Represent(Vars[j].Value, Stack.DataType.Float) + ", ";
 							value += Utils.Represent(Vars[j + 1].Value, Stack.DataType.Float) + ", ";
 							value += Utils.Represent(Vars[j + 2].Value, Stack.DataType.Float) + " }";
-						}
+						}*/
 						else if (var.Immediatesize > 1)
 						{
 							value += " = { " + Utils.Represent(Vars[j].Value, Stack.DataType.Int);
@@ -229,7 +234,7 @@ namespace Decompiler
 							}
 							value += " }";
 						}
-						else if (var.Immediatesize == 3)
+						/*else if (var.Immediatesize == 3)
 						{
 							value = " = {";
 							for (int k = 0; k < var.Value; k++)
@@ -243,7 +248,7 @@ namespace Decompiler
 								value = value.Remove(value.Length - 2);
 							}
 							value += " }";
-						}
+						}*/
 					}
 				}
 				string decl = datatype + varlocation + (Listtype == ListType.Statics && i >= scriptParamStart ? i - scriptParamStart : i).ToString();
@@ -285,10 +290,10 @@ namespace Decompiler
 					}
 					else if (var.Immediatesize == 1)
 						datatype = Types.gettype(var.DataType).vardec;
-					else if (var.Immediatesize == 3)
+					/*else if (var.Immediatesize == 3)
 					{
 						datatype = "vector3 v";
-					}
+					}*/
 					else datatype = "struct<" + var.Immediatesize.ToString() + "> ";
 				}
 				else
@@ -299,10 +304,10 @@ namespace Decompiler
 					}
 					else if (var.Immediatesize == 1)
 						datatype = Types.gettype(var.DataType).vararraydec;
-					else if (var.Immediatesize == 3)
+					/*else if (var.Immediatesize == 3)
 					{
 						datatype = "vector3[] v";
-					}
+					}*/
 					else datatype = "struct<" + var.Immediatesize.ToString() + ">[] ";
 				}
 				decl += datatype + "Param" + i.ToString() + ", ";
