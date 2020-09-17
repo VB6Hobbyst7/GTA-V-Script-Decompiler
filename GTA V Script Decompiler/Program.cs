@@ -16,7 +16,7 @@ namespace Decompiler
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		static void Main(string[] args)
 		{
 			ThreadLock = new object();
 			Config = new Ini.IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
@@ -38,9 +38,35 @@ namespace Decompiler
 			else
 				x64nativefile = new x64NativeFile(new MemoryStream(Properties.Resources.x64natives));
 
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			if (args.Length == 0)
+			{
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new MainForm());
+			}
+			else
+			{
+				DateTime Start = DateTime.Now;
+				string ext = Path.GetExtension(args[0]);
+				if (ext == ".full") //handle openIV exporting pc scripts as *.ysc.full
+				{
+					ext = Path.GetExtension(Path.GetFileNameWithoutExtension(args[0]));
+				}
+				ScriptFile fileopen;
+				Console.WriteLine("Decompiling " + args[0] + "...");
+				try
+				{
+					fileopen = new ScriptFile(File.OpenRead(args[0]), ext != ".ysc");
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Error decompiling script " + ex.Message);
+					return;
+				}
+				Console.WriteLine("Decompiled in " + (DateTime.Now - Start).ToString());
+				fileopen.Save(File.OpenWrite(args[0] + ".c"), true);
+				Console.WriteLine("Saved result to " + args[0] + ".c");
+			}
 		}
 
 		public enum IntType
