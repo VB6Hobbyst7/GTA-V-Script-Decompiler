@@ -35,7 +35,15 @@ namespace Decompiler
 				Config.IniWriteBool("Base", "Hex_Index", false);
 				Config.IniWriteBool("View", "Line_Numbers", true);
 			}
+			Find_Show_Array_Size();
+			Find_Reverse_Hashes();
+			Find_Declare_Variables();
+			Find_Shift_Variables();
+			Find_Show_Func_Pointer();
+			Find_Use_MultiThreading();
+			Find_IncFuncPos();
 			Find_Nat_Namespace();
+			Find_Hex_Index();
 			Find_Upper_Natives();
 			//Build NativeFiles from Directory if file exists, if not use the files in the resources
 			string path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
@@ -54,8 +62,7 @@ namespace Decompiler
 				x64nativefile = new x64NativeFile(new MemoryStream(Properties.Resources.x64natives));
 
 			ScriptFile.npi = new NativeParamInfo();
-			//ScriptFile.hashbank = temp;
-			// ScriptFile.hashbank = new Hashes();
+			ScriptFile.hashbank = new Hashes();
 
 			if (args.Length == 0)
 			{

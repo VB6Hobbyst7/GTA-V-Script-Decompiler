@@ -20,13 +20,13 @@ namespace Decompiler
         public readonly bool ConsoleVer;
 		public List<Function> Functions;
 		public Dictionary<int, FunctionName> FunctionLoc;
-		public static Hashes hashbank = new Hashes();
+		public static Hashes hashbank;
         private Stream file;
 		public ScriptHeader Header;
         public string name;
         internal Vars_Info Statics;
         internal bool CheckNative = true;
-		internal static NativeParamInfo npi = new NativeParamInfo();
+		internal static NativeParamInfo npi;
 		internal static x64BitNativeParamInfo X64npi = new x64BitNativeParamInfo();
         
 
