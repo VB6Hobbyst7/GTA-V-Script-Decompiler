@@ -972,18 +972,18 @@ namespace Decompiler
 
 		public void Op_GetImm(uint immediate)
 		{
-			if(PeekVar(0)?.Immediatesize == 3)
-			{
-				switch(immediate)
-				{
-					case 1:
-						Push(new StackValue(StackValue.Type.Literal, PopStructAccess() + "y"));
-						return;
-					case 2:
-						Push(new StackValue(StackValue.Type.Literal, PopStructAccess() + "z"));
-						return;
-				}
-			}
+			//if(PeekVar(0)?.Immediatesize == 3)
+			//{
+			//	switch(immediate)
+			//	{
+			//		case 1:
+			//			Push(new StackValue(StackValue.Type.Literal, PopStructAccess() + "y"));
+			//			return;
+			//		case 2:
+			//			Push(new StackValue(StackValue.Type.Literal, PopStructAccess() + "z"));
+			//			return;
+			//	}
+			//}
 			Push(new StackValue(StackValue.Type.Literal,
 				PopStructAccess() + "f_" + (Program.Hex_Index ? immediate.ToString("X") : immediate.ToString())));
 		}
@@ -991,21 +991,21 @@ namespace Decompiler
 		public string Op_SetImm(uint immediate)
 		{
 			string imm = "f_" + (Program.Hex_Index ? immediate.ToString("X") : immediate.ToString());
-			if (PeekVar(0) != null)
-			{
-				if (PeekVar(0).Immediatesize == 3)
-				{
-					switch (immediate)
-					{
-						case 1:
-							imm = "y";
-							break;
-						case 2:
-							imm = "z";
-							break;
-					}
-				}
-			}
+			//if (PeekVar(0) != null)
+			//{
+			//	if (PeekVar(0).Immediatesize == 3)
+			//	{
+			//		switch (immediate)
+			//		{
+			//			case 1:
+			//				imm = "y";
+			//				break;
+			//			case 2:
+			//				imm = "z";
+			//				break;
+			//		}
+			//	}
+			//}
 			string pointer = PopStructAccess();
 			string value = PopLit();
 			return setcheck(pointer + imm, value);
