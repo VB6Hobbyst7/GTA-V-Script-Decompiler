@@ -80,8 +80,8 @@ namespace Decompiler
 	}
 	public class X64NativeTable
 	{
-		List<string> _natives;
-		List<ulong> _nativehash;
+		public List<string> _natives;
+		public List<ulong> _nativehash;
 		public X64NativeTable(Stream scriptFile, int position, int length, int codeSize)
 		{
 			IO.Reader reader = new IO.Reader(scriptFile, false);
