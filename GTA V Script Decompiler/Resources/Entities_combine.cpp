@@ -28,9 +28,10 @@ int main()
 {
 	std::ofstream os("Entities.txt");
 	constexpr const char* in_files[] = {
+		"Entities_scripts.txt",
 		"Entities_stats.txt",
 		"Entities_vehicles.txt",
-		
+
 		"Entities_original.txt",
 		"Entities_scraped.txt",
 	};
