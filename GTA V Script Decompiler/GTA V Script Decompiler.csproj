@@ -145,6 +145,7 @@
     <None Include="Resources\Entities.dat" />
     <None Include="Resources\natives.dat" />
     <None Include="Resources\native_translation.dat" />
+    <None Include="Resources\x64nativeinfo.dat" />
     <None Include="Resources\x64natives.dat" />
   </ItemGroup>
   <ItemGroup>

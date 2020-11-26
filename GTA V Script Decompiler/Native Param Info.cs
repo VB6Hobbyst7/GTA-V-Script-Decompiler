@@ -333,11 +333,13 @@ namespace Decompiler
 		public void loadfile()
 		{
 			Natives = new Dictionary<ulong, Tuple<Stack.DataType, Stack.DataType[]>>();
+			Stream natfile;
 			string file = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
 				"x64nativeinfo.dat");
-			if (!File.Exists(file))
-				return;
-			Stream natfile = File.OpenRead(file);
+			if (File.Exists(file))
+				natfile = File.OpenRead(file);
+			else
+				natfile = new MemoryStream(Properties.Resources.x64nativeinfo);
 			IO.Reader reader = new IO.Reader(natfile, false);
 			while (natfile.Position < natfile.Length)
 			{

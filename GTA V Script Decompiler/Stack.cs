@@ -1612,19 +1612,18 @@ namespace Decompiler
 	{
 		public static DataTypes[] _types = new DataTypes[]
 		{
-			new DataTypes(Stack.DataType.Bool, 4, "bool", "b"), //needs fixing up a bit
-			new DataTypes(Stack.DataType.Float, 3, "float", "f"),
-			new DataTypes(Stack.DataType.Int, 3, "int", "i"),
-			new DataTypes(Stack.DataType.String, 3, "char[]", "c"),
-			new DataTypes(Stack.DataType.StringPtr, 3, "char*", "s"),
-			new DataTypes(Stack.DataType.Unk, 0, "var", "u"),
-			new DataTypes(Stack.DataType.Unsure, 1, "var", "u"),
-			new DataTypes(Stack.DataType.IntPtr, 3, "int*", "i"),
-			new DataTypes(Stack.DataType.UnkPtr, 1, "var*", "u"),
-			new DataTypes(Stack.DataType.FloatPtr, 3, "float*", "f"),
-			new DataTypes(Stack.DataType.Vector3, 2, "Vector3", "v"),
-			new DataTypes(Stack.DataType.None, 4, "void", "f"),
-
+			/*  0 */ new DataTypes(Stack.DataType.Bool, 4, "bool", "b"), //needs fixing up a bit
+			/*  1 */ new DataTypes(Stack.DataType.Float, 3, "float", "f"),
+			/*  2 */ new DataTypes(Stack.DataType.Int, 3, "int", "i"),
+			/*  3 */ new DataTypes(Stack.DataType.String, 3, "char[]", "c"),
+			/*  4 */ new DataTypes(Stack.DataType.StringPtr, 3, "char*", "s"),
+			/*  5 */ new DataTypes(Stack.DataType.Unk, 0, "var", "u"),
+			/*  6 */ new DataTypes(Stack.DataType.Unsure, 1, "var", "u"),
+			/*  7 */ new DataTypes(Stack.DataType.IntPtr, 3, "int*", "i"),
+			/*  8 */ new DataTypes(Stack.DataType.UnkPtr, 1, "var*", "u"),
+			/*  9 */ new DataTypes(Stack.DataType.FloatPtr, 3, "float*", "f"),
+			/* 10 */ new DataTypes(Stack.DataType.Vector3, 2, "Vector3", "v"),
+			/* 11 */ new DataTypes(Stack.DataType.None, 4, "void", "f"),
 		};
 
 		public static DataTypes gettype(Stack.DataType type)
