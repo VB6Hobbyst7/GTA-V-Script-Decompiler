@@ -30,6 +30,7 @@ int main()
 	constexpr const char* in_files[] = {
 		"Entities_scripts.txt",
 		"Entities_stats.txt",
+		"Entities_peds.txt",
 		"Entities_vehicles.txt",
 
 		"Entities_original.txt",
