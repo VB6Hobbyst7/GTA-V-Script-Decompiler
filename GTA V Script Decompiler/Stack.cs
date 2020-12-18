@@ -160,7 +160,9 @@ namespace Decompiler
 						break;
 					case StackValue.Type.Struct:
 						if (count + top.StructSize > size)
-							throw new Exception("Struct size too large");
+						{
+							top.StructSize = (size - count);
+						}
 						count += top.StructSize;
 						items.Add(new StackValue(StackValue.Type.Literal, top.Value));
 						break;
@@ -195,7 +197,9 @@ namespace Decompiler
 						break;
 					case StackValue.Type.Struct:
 						if (count + top.StructSize > size)
-							throw new Exception("Struct size too large");
+						{
+							top.StructSize = (size - count);
+						}
 						count += top.StructSize;
 						items.Add(new StackValue(top.Value, top.StructSize));
 						break;
@@ -1548,6 +1552,7 @@ namespace Decompiler
 			public int StructSize
 			{
 				get { return _structSize; }
+				set { _structSize = value; }
 			}
 
 			public DataType Datatype
