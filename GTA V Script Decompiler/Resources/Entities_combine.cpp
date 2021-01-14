@@ -33,6 +33,7 @@ int main()
 		"Entities_peds.txt",
 		"Entities_vehicles.txt",
 		"Entities_weapons.txt",
+		"Entities_tunables.txt",
 
 		"Entities_original.txt",
 		"Entities_scraped.txt",
