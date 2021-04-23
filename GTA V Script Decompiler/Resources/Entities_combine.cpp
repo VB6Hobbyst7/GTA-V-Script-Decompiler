@@ -35,8 +35,7 @@ int main()
 		"Entities_weapons.txt",
 		"Entities_tunables.txt",
 
-		"Entities_original.txt",
-		"Entities_scraped.txt",
+		"Entities_original_and_scraped.txt",
 	};
 	std::unordered_set<std::int32_t> included_hashes = {};
 	for(const auto& in_file : in_files)
