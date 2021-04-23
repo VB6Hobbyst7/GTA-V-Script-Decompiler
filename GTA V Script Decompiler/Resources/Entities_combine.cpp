@@ -28,11 +28,9 @@ int main()
 {
 	std::ofstream os("Entities.txt");
 	constexpr const char* in_files[] = {
-		"Entities_scripts.txt",
+		"Entities_gta-v-joaat-hash-db.txt",
+
 		"Entities_stats.txt",
-		"Entities_peds.txt",
-		"Entities_vehicles.txt",
-		"Entities_weapons.txt",
 		"Entities_tunables.txt",
 
 		"Entities_original_and_scraped.txt",
